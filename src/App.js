@@ -8,11 +8,28 @@ import firebase from "./config/firebase"
 class App extends Component {
   constructor(){
     super();
-    this.state = {
+    this.state = ({
+      user:null,
       signup:false,
       login:false,
       dashboard:false
-    }
+    });
+  }
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        this.setState({ user });
+        localStorage.setItem('user', user.uid);
+      } else {
+        this.setState({ user: null });
+        localStorage.removeItem('user');
+      }
+    });
   }
   signup = () => {
     this.setState({
@@ -33,15 +50,17 @@ class App extends Component {
   }
 main = () => {
   return(
-    <div className="container">
+    <div className="container ">
         <div className="card-body" id="mainscreen">
         <img 
-        className="rounded mx-auto d-block"
-        src = "https://www.brandcrowd.com/gallery/brands/pictures/picture15192799896918.png" width="250px"/>
-        <h2 className="text-center">E-Citizen</h2>
-        <p align="center"><button className="btn btn-default" style={{width:"150px"}} onClick={this.login}>Login</button></p>
-        <h4 style={{margin:"2%"}} align="center">---------------or---------------</h4>
-        <p align="center"><button className="btn btn-default" style={{width:"150px"}} onClick={this.signup}>SignUp</button></p>
+        className="rounded-top mx-auto d-block img-responsive rgba-stylish-strong"
+        src={require('./image/E-citizen.png')} width="250px"/>
+
+        <p align="center"><button className="btn btn-default" style={{width:"150px",marginTop:"20px"}} onClick={this.login}>
+        Login</button></p>
+        <h4 style={{margin:"2%"}} align="center" className="text-white">OR</h4>
+        <p align="center"><button className="btn btn-default" style={{width:"150px"}} onClick={this.signup}>
+        SignUp</button></p>
     </div>
     </div>
   );
@@ -52,6 +71,13 @@ dashboard = () => {
     login:false
   })
 }
+logout = () => {
+  this.setState({
+    dashboard:false,
+    login:false,
+    signup:false
+  })
+}
   render() {
     const {signup, login,dashboard} = this.state;
     return (
@@ -59,7 +85,7 @@ dashboard = () => {
         {!login && !signup && !dashboard && this.main()}
         {login && <Login dashboard={this.dashboard}/>}
         {signup && <Signup signup2={this.signup2}/>}
-        {dashboard && <Dashboard />}
+        {dashboard && <Dashboard logout={this.logout}/>}
       </div>
     );
   }

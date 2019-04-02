@@ -37,19 +37,17 @@ body{
   background-color: black;
   opacity: 0.9;
   color: lightslategray;
-  border-radius: 2%;
-  margin-left: 30%;
-  margin-right: 30%;
   margin-top: 5%;
   padding: 45px
+}
+
+#logo{
+  border-radius: 50%;
 }
 #login{
   background-color: black;
   opacity: 0.9;
   color: lightslategray;
-  border-radius: 2%;
-  margin-left: 34%;
-  margin-right: 34%;
   margin-top: 5%;
   padding: 35px;
   padding-top: 45px;
@@ -59,9 +57,113 @@ body{
   opacity: 0.9;
   color: lightslategray;
   border-radius: 2%;
-  margin-left: 30%;
-  margin-right: 30%;
   padding: 31px
+}
+@media only screen and (max-width: 600px){
+
+  #mainscreen{
+    margin-top: 30%;
+    border-radius: 5%;
+  }
+  #login{
+    margin-top: 30%;
+    border-radius: 5%;
+  }
+  #signup{
+    margin-top: 10%;
+    border-radius: 5%;
+  }
+  
+}
+@media only screen and (min-width: 600px) {
+  
+  #mainscreen{
+    margin-top: 25%;
+    margin-left: 15%;
+    margin-right: 15%;
+    border-radius: 5%;
+    opacity:  0.9;
+  }
+  #login{
+    margin-top: 25%;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 5%;
+  }
+  #signup{
+    margin-top: 3%;
+    margin-left: 15%;
+    margin-right: 15%;
+    border-radius: 5%;
+  }
+}
+@media only screen and (min-width: 768px){
+  #mainscreen{
+    margin-top: 20%;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 5%;
+  }
+  #login{
+    margin-top: 20%;
+    margin-left: 25%;
+    margin-right: 25%;
+    border-radius: 5%;
+  }
+  #signup{
+    margin-top: 3%;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 5%;
+  }
+  
+}
+@media only screen and (min-width: 992px){
+  #mainscreen{
+    margin-top: 15%;
+    margin-left: 25%;
+    margin-right: 25%;
+    border-radius: 5%;
+  }
+  #login{
+    margin-top: 15%;
+    margin-left: 30%;
+    margin-right: 30%;
+    border-radius: 5%;
+    
+  }
+  #signup{
+    margin-top: 3%;
+    margin-left: 25%;
+    margin-right: 25%;
+    border-radius: 5%;
+  }
+}
+@media only screen and (min-width: 1200px){
+  #mainscreen{
+    margin-top: 7%;
+    margin-left: 30%;
+    margin-right: 30%;
+    border-radius: 5%;
+  }
+  #login{
+    margin-top: 5%;
+    margin-left: 35%;
+    margin-right: 35%;
+    border-radius: 5%;
+  }
+  #signup{
+    margin-top: 0%;
+    margin-left: 30%;
+    margin-right: 30%;
+    border-radius: 5%;
+  }
+  #card-body{
+    height: 60px;
+  }
+}
+#nav{
+  box-shadow: 0px 15px 15px -12px #111;
 }
 #input{
   margin-bottom: 3%;
@@ -117,4 +219,155 @@ a:hover {
 }
 .card:hover{
   box-shadow: 0 16px 16px 0 rgba(0,0,0,0.5);
+}
+
+.modal-content{
+  background-color: darkcyan;
+}
+.btn-link{
+  color:white;
+}
+.modal-heading h2{
+  color:#ffffff;
+}
+
+.hovereffect {
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+}
+
+.hovereffect .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  top: -200px;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: all 0.1s ease-out 0.5s;
+  transition: all 0.1s ease-out 0.5s;
+}
+
+.hovereffect:hover .overlay {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  top: 0px;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+
+.hovereffect img {
+  display: block;
+  position: relative;
+}
+
+.hovereffect h2 {
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-transform: translateY(-200px);
+  -ms-transform: translateY(-200px);
+  transform: translateY(-200px);
+  -webkit-transition: all ease-in-out 0.1s;
+  transition: all ease-in-out 0.1s;
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+
+.hovereffect:hover h2 {
+  -webkit-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+
+.hovereffect button.info {
+  display: inline-block;
+  text-decoration: none;
+  padding: 7px 14px;
+  text-transform: uppercase;
+  margin: 50px 0 0 0;
+  background-color: transparent;
+  -webkit-transform: translateY(-200px);
+  -ms-transform: translateY(-200px);
+  transform: translateY(-200px);
+  color: #000;
+  border: 1px solid #000;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+}
+
+.hovereffect button.info:hover {
+  box-shadow: 0 0 5px #fff;
+}
+
+.hovereffect:hover button.info {
+  -webkit-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  transform: translateY(0px);
+  box-shadow: 0 0 5px #000;
+  color: #000;
+  border: 1px solid #000;
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+
+/* signup*/
+
+* {
+  box-sizing: border-box;
+}
+
+#container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.hidden {
+  display: none;
+}
+
+#user-info {
+  border: 1px solid #CCC;
+  clear: both;
+  margin: 0 auto 20px;
+  max-width: 400px;
+  padding: 10px;
+  text-align: left;
+}
+
+#photo-container {
+  background-color: #EEE;
+  border: 1px solid #CCC;
+  float: left;
+  height: 80px;
+  margin-right: 10px;
+  width: 80px;
+}
+
+#photo {
+  height: 80px;
+  margin: 0;
+  width: 80px;
+}
+#urdu {
+  font-family: "Urdu Nastaliq Unicode";
+      font-size: 32px; 
 }

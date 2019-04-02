@@ -5,66 +5,41 @@ import firebase from "../config/firebase";
 class Signup extends Component {
   constructor(props){
     super(props);
-    this.state = {
-        name:'Junaid Khan',
-        father:'A ghaffar khan',
-        gender:'Male',
-        dob:'',
-        address:'',
-        cnic:'',
-        userArr:[]
-    }
+    this.state = ({
+      email: '',
+      password: ''
+    });
+  }
+  handleChange = e =>  {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  signup = e =>{
+    e.preventDefault();
+    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+    }).then((u)=>{
+      console.log(u);
+      this.props.signup2();
+    })
+    .catch((error) => {
+        console.log(error);
+      })
   }
 
-  signup = () => {
-      this.props.signup2();
-  }
-  cnic = () => {
-    var { userArr } = this.state;
-      console.log("hey");
-      
-    var starCountRef = firebase.database().ref(`nadra`);
-    console.log(starCountRef);
-    
-    starCountRef.once('value', (snapshot) => {
-      console.log('data===>', snapshot.val());
-      userArr.push({ ...snapshot.val() });
-      this.setState({
-        userArr
-      })
-    })
-  }
-  confirm = () => {
-    console.log(this.state.userArr);
-    this.state.userArr.map((val) => {
-        console.log(val.name);
-        /*this.setState({
-            name:val.name,
-            father:val.father,
-            gender:val.gender,
-            dob:val.dob,
-            cnic:val.cnic,
-            address:val.address
-        })*/
-      })
-  }
   render() {
-      const {name, father, gender, address, dob} = this.state;
     return (
-      <div className="card-body" id="signup">
+        <div className=" card-body" id="login">
         <img 
-        className="rounded mx-auto d-block"
-        src = "https://www.brandcrowd.com/gallery/brands/pictures/picture15192799896918.png" width="250px"/>
-        <h2 className="text-center">Signup</h2>
-            <input type="number" className="form-control" id="input" placeholder="Enter CNIC number...." onChange={this.cnic}/>
-            <p align="center"><button className="btn btn-default" style={{width:"150px"}} onClick={this.confirm}>Confirm</button></p>
-            <input type="text" className="form-control" placeholder="Full Name" value={name} disabled/>
-            <input type="text" className="form-control" placeholder="Father Name" value={father} disabled/>
-            <input type="text" className="form-control" placeholder="Gender" value={gender} disabled/>
-            <input type="text" className="form-control" placeholder="Date of Birth" value={dob} disabled/>
-            <input type="text" className="form-control" placeholder="Address" value={address} disabled/>
-            <input type="password" className="form-control" placeholder="Enter Your Password...."/>
-            <p align="center"><button className="btn btn-default" style={{width:"150px"}} id="loginbtn" onClick={this.signup}>SignUp</button></p>
+        className="rounded-top mx-auto d-block img-responsive rgba-stylish-strong"
+        src={require('../image/E-citizen.png')} width="250px"/>
+        <h2 className="text-center">Create Your Account</h2>
+        <form>
+            <input type="email" className="form-control" id="input" placeholder="Enter your Email...."
+            name="email" value={this.state.email} onChange={this.handleChange}/>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <input type="password" className="form-control" placeholder="Enter your password...."
+            name="password" value={this.state.password} onChange={this.handleChange}/>
+            <p align="center"><button className="btn btn-default" style={{width:"150px"}} id="loginbtn" onClick={this.signup}>Signup</button></p>
+        </form>
       </div>
     );
   }
